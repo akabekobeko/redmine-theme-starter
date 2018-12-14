@@ -59,3 +59,12 @@ typings/
 
 # next.js build output
 .next
+
+src/assets/stylesheets/application.css
+src/assets/stylesheets/responsive.css
+.*
+*.map
+*.log
+*.zip
+package-lock.json
+!.gitignore
