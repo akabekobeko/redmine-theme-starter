@@ -312,6 +312,7 @@ tr.message td.last_message { font-size: 80%; white-space: nowrap; }
 tr.message.sticky td.subject { font-weight: bold; }
 
 body.avatars-on #replies .message {padding-left:32px;}
+#replies .reply:target > h4 {background-color:#DDEEFF;}
 #replies h4 img.gravatar {margin-left:-32px;}
 
 tr.version.closed, tr.version.closed a { color: #999; }
@@ -352,13 +353,15 @@ tr.group a.toggle-all { color: #aaa; font-size: 80%; display:none; float:right; 
 tr.group:hover a.toggle-all { display:inline;}
 a.toggle-all:hover {text-decoration:none;}
 
-table.list tbody tr:hover { background-color:#ffffdd; }
 table.list tbody tr.group:hover { background-color:inherit; }
+
 table td {padding:2px;}
 table p {margin:0;}
 
 table.list:not(.odd-even) tbody tr:nth-child(odd), .odd, #issue-changesets div.changeset:nth-child(odd) { background-color:#f6f7f8; }
 table.list:not(.odd-even) tbody tr:nth-child(even), .even, #issue-changesets div.changeset:nth-child(even) { background-color: #fff; }
+table.list:not(.odd-even) tbody tr:nth-child(odd):hover, .odd:hover, #issue-changesets div.changeset:nth-child(odd):hover,
+table.list:not(.odd-even) tbody tr:nth-child(even):hover, .even:hover, #issue-changesets div.changeset:nth-child(even):hover { background-color:#ffffdd; }
 
 tr.builtin td.name {font-style:italic;}
 
@@ -447,7 +450,7 @@ div.square {
 form {display: inline;}
 input, select {vertical-align: middle; margin-top: 1px; margin-bottom: 1px;}
 input[type="submit"] { -webkit-appearance: button; }
-fieldset {border: 1px solid #e4e4e4; margin:0;}
+fieldset {border: 1px solid #e4e4e4; margin:0; min-width: inherit;}
 legend {color: #333;}
 hr { width: 100%; height: 1px; background: #ccc; border: 0;}
 blockquote { font-style: italic; border-left: 3px solid #e0e0e0; padding-left: 0.6em; margin-left: 0;}
@@ -526,7 +529,7 @@ div.journal h4 img.gravatar {margin-left:-32px;}
   border-radius: 0 0 3px 3px / 0 0 3px 3px;
 }
 
-#history div:target h4 {background-color:#DDEEFF;}
+#history div:target > h4 {background-color:#DDEEFF;}
 
 div#activity dl, #search-results { margin-left: 2em; }
 div#activity dd, #search-results dd { margin-bottom: 1em; padding-left: 18px; font-size: 0.9em; }
@@ -593,10 +596,28 @@ ul.projects div.description li {list-style-type:initial;}
   -moz-column-width: 400px;
   -moz-column-gap : 0.5rem;
 }
-#projects-index ul.projects li.root>ul.projects { border-left: 3px solid #e0e0e0; padding-left:1em;}
-#projects-index ul.projects li.root {margin-bottom: 1em;}
+#projects-index li.root ul.projects { border-left: 3px solid #e0e0e0; padding-left:1em;}
+#projects-index ul.projects li.root {
+  margin-bottom: 1em;
+  padding: 15px 20px;
+  border: 1px solid #d7d7d7;
+  border-radius: 3px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  break-inside: avoid-column;
+  -webkit-break-inside: avoid-column;
+  -moz-break-inside: avoid-column;
+  page-break-inside:avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  width: 100%;
+}
 #projects-index ul.projects li.child {margin-top: 1em;}
 #projects-index ul.projects div.root a.project { font-family: "Trebuchet MS", Verdana, sans-serif; font-weight: bold; font-size: 16px; margin: 0 0 10px 0; }
+#projects-index ul.projects div.description {
+  padding-top: 0.5em;
+}
 #projects-index a.icon-fav {padding-left:0; padding-right:20px; background-position:98% 50%;}
 
 #notified-projects>ul, #tracker_project_ids>ul, #custom_field_project_ids>ul {max-height:250px; overflow-y:auto;}
@@ -962,6 +983,11 @@ p.cal.legend span {display:block;}
 .tooltip span.tip{display: none; text-align:left;}
 .tooltip span.tip a { color: #169 !important; }
 
+.tooltip span.tip img.gravatar {
+  float: none;
+  margin: 0;
+}
+
 div.tooltip:hover span.tip{
 display:block;
 position:absolute;
@@ -1197,9 +1223,13 @@ div.wiki img {vertical-align:middle; max-width:100%;}
   overflow: hidden;
 }
 
+.gantt_subjects_column + td {
+  padding: 0;
+}
+
 .gantt_hdr.nwday {background-color:#f1f1f1; color:#999;}
 
-.gantt_subjects { font-size: 0.8em; }
+.gantt_subjects { font-size: 0.8em; position: relative; z-index: 1; }
 .gantt_subjects div { line-height:16px;height:16px;overflow:hidden;white-space:nowrap;text-overflow: ellipsis; }
 .gantt_subjects div.issue-subject:hover { background-color:#ffffdd; }
 
@@ -1339,7 +1369,7 @@ div.wiki img {vertical-align:middle; max-width:100%;}
 .icon-file.text-x-c { background-image: url(../images/files/c.png); }
 .icon-file.text-x-csharp { background-image: url(../images/files/csharp.png); }
 .icon-file.text-x-java { background-image: url(../images/files/java.png); }
-.icon-file.text-x-javascript { background-image: url(../images/files/js.png); }
+.icon-file.application-javascript { background-image: url(../images/files/js.png); }
 .icon-file.text-x-php { background-image: url(../images/files/php.png); }
 .icon-file.text-x-ruby { background-image: url(../images/files/ruby.png); }
 .icon-file.text-xml { background-image: url(../images/files/xml.png); }
@@ -1351,7 +1381,7 @@ div.wiki img {vertical-align:middle; max-width:100%;}
 .icon-file.image-tiff { background-image: url(../images/files/image.png); }
 .icon-file.application-pdf { background-image: url(../images/files/pdf.png); }
 .icon-file.application-zip { background-image: url(../images/files/zip.png); }
-.icon-file.application-x-gzip { background-image: url(../images/files/zip.png); }
+.icon-file.application-gzip { background-image: url(../images/files/zip.png); }
 
 .sort-handle { width:16px; height:16px; background:url(../images/reorder.png) no-repeat 0 50%; cursor:move; }
 .sort-handle.ajax-loading { background-image: url(../images/loading.gif); }
