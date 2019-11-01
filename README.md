@@ -12,13 +12,12 @@ Starter kit for theme of Redmine.
 4. `cd redmine-theme-starter`
 5. `npm i`
 
+### Watch build for CSS
 
-### Preview on dummy HTML
+Transpile (watch) CSS with watch mode.
 
-Transpile (watch) CSS and preview on web browser, this is the local HTML for easy preview without starting Redmine.
-
-* Preview: `npm start`
-* Stop: <kbd>Ctrl</kbd> + <kbd>C</kbd>
+- Preview: `npm start`
+- Stop: <kbd>Ctrl</kbd> + <kbd>C</kbd>
 
 ### Preview on Redmine
 
@@ -33,4 +32,4 @@ Stop is `docker-compose stop`.
 
 ## License
 
-* [GNU GENERAL PUBLIC LICENSE Version 3](LICENSE)
+- [GNU GENERAL PUBLIC LICENSE Version 3](LICENSE)
