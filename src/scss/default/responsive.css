@@ -217,12 +217,11 @@
     display: none;
   }
 
-  .splitcontentleft, #list-left {
+  .splitcontentleft, .splitcontentright, .splitcontenttop {
     width: 100%;
-  }
-
-  .splitcontentright, #list-right {
-    width: 100%;
+    flex: auto;
+    margin-right: 0;
+    margin-left: 0;
   }
 
   /*----------------------------------------*\
@@ -262,7 +261,7 @@
 
   /* search magnifier icon */
   .search-magnifier {
-    font-family: Verdana;
+    font-family: Verdana, sans-serif;
     color: #bbb;
 
     cursor: pointer;
@@ -657,19 +656,6 @@
     F) PAGE SPECIFIC STYLES
   \*----------------------------------------*/
 
-  /* page /login */
-
-  #login-form table {
-    width: 100%;
-  }
-
-  #login-form input#username,
-  #login-form input#password,
-  #login-form input#openid_url {
-    width: 100%;
-    height: auto;
-  }
-
   /* some themes add a margin to login page, remove it on mobile */
   .action-login #main {
     margin: 0;
@@ -712,8 +698,8 @@
 
   .gantt_subjects_column .gantt_hdr {
     width: 100% !important;
-    border-right: 1px solid #c0c0c0; /* [2] */
     right: 0 !important; /* [2] */
+    border-right: solid 1px #c0c0c0;
   }
 
   #gantt_area {
@@ -756,6 +742,10 @@
     float: none !important;
   }
 
+  #all_attributes #issue_tracker_id {
+    width: 90%;
+  }
+
   #issue_is_private_label {
     display: inline;
   }
@@ -794,12 +784,13 @@
   }
 
   #issue_tree .issue > td.subject, #relations .issue > td.subject {
-    width: 100% !important; /* let subject have one full width column */
+    width: 100%; /* let subject have one full width column */
     word-break: break-word; /* break word if subject is too long */
+    padding-right: 25px; /* this is the spaces that .buttons uses next to subject */
   }
 
-  #issue_tree .issue > td:not(.checkbox), #relations .issue > td:not(.checkbox) {
-    width: 33.33%; /* three columns for all cells that are not subject */
+  #issue_tree .issue > td:not(.subject), #relations .issue > td:not(.subject) {
+    width: 20%; /* three columns for all cells that are not subject */
   }
 
   #issue_tree .issues, #issue_tree .issue,
@@ -820,11 +811,6 @@
   #issue_tree .issue .buttons a,
   #relations .issue .buttons a {
     vertical-align: middle;
-  }
-
-  #issue_tree .issue > td.subject,
-  #relations .issue > td.subject {
-    padding-right: 25px; /* this is the spaces that .buttons uses next to subject */
   }
 
   /* attachment upload form */
@@ -855,4 +841,3 @@
 
   #login-form {width:100%; margin-top:2em;}
 }
-

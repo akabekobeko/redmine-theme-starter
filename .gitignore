@@ -60,6 +60,7 @@ typings/
 # next.js build output
 .next
 
+# My Settings
 src/assets/stylesheets/application.css
 src/assets/stylesheets/responsive.css
 .*
@@ -68,3 +69,7 @@ src/assets/stylesheets/responsive.css
 *.zip
 package-lock.json
 !.gitignore
+!.gitkeep
+
+# Please change it according to the theme name.
+mytheme/
