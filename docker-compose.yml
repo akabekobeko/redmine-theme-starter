@@ -28,3 +28,10 @@ services:
       MYSQL_USER: redmine_mytheme
       MYSQL_PASSWORD: redmine_mytheme
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+
+  nodejs:
+      image: node:13
+      volumes:
+          - ./:/app
+      working_dir: /app
+      command: bash -c "npm install && npm start"
