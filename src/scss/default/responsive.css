@@ -76,10 +76,6 @@
     position: relative;
     overflow-x: hidden; /* hide horizontal overflow */
     max-width: 100%;
-  }
-
-  #wrapper,
-  #wrapper2 {
     margin: 0;
   }
 
@@ -557,7 +553,7 @@
     content: '\00D7'; /* close glyph */
   }
 
-  .flyout-is-active #wrapper2 {
+  .flyout-is-active #main {
     /*
      * only relevant for devices with cursor when flyout it active, in order to show,
      * that whole wrapper content is clickable and closes flyout menu

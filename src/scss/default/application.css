@@ -16,9 +16,13 @@ pre, code {font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace;}
 .wiki h6 {font-size: 1em; color: #8e8e8e;}
 
 /***** Layout *****/
-div#wrapper, div#wrapper2, div#wrapper3 { min-height: inherit; }
-#wrapper {background: white;overflow: hidden;}
-#wrapper3 { display: flex; flex-direction: column; }
+#wrapper {
+  min-height: inherit;
+  background: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
 #top-menu {background: #3E5B76; color: #fff; height:1.8em; font-size: 0.8em; padding: 2px 10px 0px 12px;}
 #top-menu ul {margin: 0;  padding: 0;}
@@ -113,8 +117,6 @@ div#wrapper, div#wrapper2, div#wrapper3 { min-height: inherit; }
 #sidebar li input[type=checkbox] {height: 20px;}
 
 #content { flex-grow: 1; background-color: #fff; margin: 0px; padding: 10px 16px 10px 16px; overflow-x: auto;}
-html>body #content { min-height: 600px; }
-* html body #content { height: 600px; } /* IE */
 
 #main.nosidebar #sidebar{ display: none; }
 
@@ -127,7 +129,6 @@ html>body #content { min-height: 600px; }
 #login-form input[type=text], #login-form input[type=password], #login-form input[type=submit] {display: block; width: 100%;}
 #login-form input[type=text], #login-form input[type=password] {margin-bottom: 15px;}
 #login-form a.lost_password {float:right; font-weight:normal;}
-#login-form input#openid_url {background:#fff url(../images/openid-bg.gif) no-repeat 4px 50%; padding-left:24px !important;}
 #login-form h3 {text-align: center;}
 
 div.modal { border-radius:5px; background:#fff; z-index:50; padding:4px;}
@@ -149,9 +150,15 @@ a img{ border: 0; }
 a.issue.closed, a.issue.closed:link, a.issue.closed:visited { color: #999; text-decoration: line-through; }
 a.project.closed, a.project.closed:link, a.project.closed:visited { color: #999; }
 a.user.locked, a.user.locked:link, a.user.locked:visited {color: #999;}
+a.user.user-mention {
+  background-color: #DDEEFF;
+  padding: 0.1em 0.1em;
+  border-radius: 0.1em;
+}
 
 #sidebar a.selected {line-height:1.7em; padding:1px 3px 2px 2px; margin-left:-2px; background-color:#9DB9D5; color:#fff; border-radius:2px;}
 #sidebar a.selected:hover {text-decoration:none;}
+#sidebar .query.default {font-weight: bold;}
 #admin-menu a {line-height:1.7em;}
 #admin-menu a.selected {padding-left: 20px !important; background-position: 2px 40%;}
 
@@ -245,6 +252,7 @@ div + .drdn-items {border-top:1px solid #ccc;}
 /***** Tables *****/
 table.list, .table-list { border: 1px solid #e4e4e4; width: 100%; margin-bottom: 4px; border-radius: 3px; border-spacing: 0; overflow: hidden;}
 table.list th, .table-list-header { background-color:#EEEEEE; padding: 4px; white-space:nowrap; font-weight:bold; }
+table.list th.whitespace-normal {white-space: normal;}
 table.list td {text-align:center; vertical-align:middle; padding-right:10px;}
 table.list td.id { width: 2%; text-align: center;}
 table.list td.name, table.list td.description, table.list td.subject, table.list td.parent-subject, table.list td.comments, table.list td.roles, table.list td.attachments, table.list td.text,  table.list td.short_description {text-align: left;}
@@ -320,6 +328,7 @@ table.files tr.file td.filename { text-align: left; padding-left: 24px; }
 table.files tr.file td.digest { font-size: 80%; }
 
 table.members td.roles, table.memberships td.roles { width: 45%; }
+table.members td.buttons { text-align: left; width: 1px; white-space: nowrap;}
 
 table.messages td.last_message {text-align:left;}
 tr.message { height: 2.6em; }
@@ -510,6 +519,10 @@ textarea:focus, textarea:active {
   outline: none;
 }
 
+input:placeholder-shown {
+  text-overflow: ellipsis;
+}
+
 select[multiple=multiple] {background: #fff; padding-right: initial; height: auto;}
 fieldset {border: 1px solid #e4e4e4; margin:0; min-width: inherit;}
 legend {color: #333;}
@@ -539,6 +552,8 @@ div.issue .attributes {margin-top: 2em;}
 div.issue .attributes .attribute {padding-left:180px; clear:left; min-height: 1.8em;}
 div.issue .attributes .attribute .label {width: 170px; margin-left:-180px; font-weight:bold; float:left;  overflow:hidden; text-overflow: ellipsis;}
 div.issue .attribute .value {overflow:auto; text-overflow: ellipsis;}
+div.issue .attribute.string_cf .value .wiki p {margin-top: 0; margin-bottom: 0;}
+div.issue .attribute.text_cf .value .wiki p:first-of-type {margin-top: 0;}
 div.issue.overdue .due-date .value { color: #c22; }
 body.controller-issues h2.inline-flex {padding-right: 0}
 
@@ -546,8 +561,8 @@ body.controller-issues h2.inline-flex {padding-right: 0}
 #issue_tree td.checkbox, #relations td.checkbox {display:none;}
 #issue_tree td.subject, #relations td.subject {width: 50%;}
 #issue_tree td.buttons, #relations td.buttons {padding:0;}
-#issue_tree .issues-stat {font-size: 80%}
-#issue_tree .issues-stat .badge {bottom: initial;}
+#issue_tree .issues-stat, #relations .issues-stat {font-size: 80%}
+#issue_tree .issues-stat .badge, #relations .issues-stat .badge {bottom: initial;}
 
 #trackers_description {display:none;}
 #trackers_description dt {font-weight: bold; text-decoration: underline;}
@@ -639,6 +654,8 @@ div#roadmap .wiki h2 { font-size: 110%; }
 div#roadmap h2, div#roadmap h3 {padding-right: 0;}
 body.controller-versions.action-show div#roadmap .related-issues {width:70%;}
 
+div#roadmap .version-article {padding-bottom: 12px;}
+
 div#version-summary { float:right; width:28%; margin-left: 16px; margin-bottom: 16px; background-color: #fff; }
 div#version-summary fieldset { margin-bottom: 1em; }
 div#version-summary fieldset.time-tracking table { width:100%; }
@@ -728,7 +745,7 @@ ul.properties li span {font-style:italic;}
 .total-hours span.hours-int { font-size: 120%; }
 
 .autoscroll {overflow-x: auto; padding:1px; margin-bottom: 1.2em; position: relative;}
-#user_login, #user_firstname, #user_lastname, #user_mail, #my_account_form select, #user_form select, #user_identity_url { width: 90%; }
+#user_login, #user_firstname, #user_lastname, #user_mail, #my_account_form select, #user_form select { width: 90%; }
 
 #workflow_copy_form select { width: 200px; }
 table.transitions td.enabled {background: #bfb;}
@@ -789,7 +806,7 @@ span.pagination {margin-left:3px; color:#888; display:block;}
   font-weight: bold;
 }
 span.pagination>span {white-space:nowrap;}
-.controller-attachments.action-show span.pagination{
+.controller-attachments.action-show span.pagination, .controller-repositories.action-entry span.pagination {
   display: block;
   margin-top: 1.2em;
 }
@@ -1121,6 +1138,12 @@ img.ui-datepicker-trigger {
   margin-left: 4px;
 }
 
+/***** Documents *****/
+
+#document-list .document-group {
+  margin-bottom: 15px;
+}
+
 /***** Progress bar *****/
 table.progress {
   border-collapse: collapse;
@@ -1306,6 +1329,13 @@ a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
 h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor, h4:hover a.wiki-anchor, h5:hover a.wiki-anchor, h6:hover a.wiki-anchor { display: inline; color: #ddd; }
 
 div.wiki img {vertical-align:middle; max-width:100%;}
+div.wiki .task-list {
+  list-style-type: none;
+  padding-left: 0px;
+}
+div.wiki .task-list input.task-list-item-checkbox {
+  height: initial;
+}
 
 /***** My page layout *****/
 .block-receiver {
@@ -1487,7 +1517,8 @@ td.gantt_selected_column .gantt_hdr,.gantt_selected_column_container {
   color: #fff;
   border-radius: 3px;
   border: 0;
-  box-shadow: none
+  box-shadow: none;
+  white-space: pre-wrap;
 }
 
 /***** Icons *****/
@@ -1581,7 +1612,7 @@ td.gantt_selected_column .gantt_hdr,.gantt_selected_column_container {
 .icon-shared { background-image: url(../images/link.png); }
 .icon-actions { background-image: url(../images/3_bullets.png); }
 .icon-sort-handle { background-image: url(../images/reorder.png); }
-.icon-expended { background-image: url(../images/arrow_down.png); }
+.icon-expanded { background-image: url(../images/arrow_down.png); }
 .icon-collapsed { background-image: url(../images/arrow_right.png); }
 .icon-bookmark { background-image: url(../images/tag_blue_delete.png); }
 .icon-bookmark-off { background-image: url(../images/tag_blue_add.png); }
@@ -1803,7 +1834,7 @@ img {
   max-width: 100%;
 }
 
-.filecontent-container > .filecontent.wiki {
+.filecontent.wiki {
   position: relative;
   padding: 1em;
   border: 1px solid #e4e4e4;
